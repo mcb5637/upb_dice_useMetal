@@ -13,15 +13,24 @@ find_package(Boost REQUIRED)
 
 # metall is not available from conan
 # todo include metall, e.g. via FetchContent_Declare https://cmake.org/cmake/help/latest/module/FetchContent.html
+include(FetchContent)
+FetchContent_Declare(
+        Metall
+        GIT_REPOSITORY https://github.com/LLNL/metall.git
+        GIT_TAG master
+)
+FetchContent_MakeAvailable(Metall)
 
 add_executable(write_data write_data.cpp)
 target_link_libraries(write_data
 fmt::fmt
 Boost::Boost
+Metall::Metall
 )
 
 add_executable(read_data read_data.cpp)
 target_link_libraries(read_data
 fmt::fmt
 Boost::Boost
+Metall::Metall
 )
