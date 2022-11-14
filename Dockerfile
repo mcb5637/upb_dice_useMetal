@@ -1,4 +1,5 @@
-FROM ubuntu:21.10
+FROM ubuntu:rolling
+# 21.10 seems to be unavailable, rolling is the latest version (22.10)
 ARG DEBIAN_FRONTEND=noninteractive
 # install make, C++, CMake and python3 pip (for installing conan)
 RUN apt-get -qq update && \

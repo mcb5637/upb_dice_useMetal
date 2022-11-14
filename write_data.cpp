@@ -1,12 +1,10 @@
 #include <iostream>
 #include <random>
 
-#include "boost/container/map.hpp"
-//#include "metall/metall.hpp"
+#include "common_defines.hpp"
 
-using map_t = boost::container::map<int, int>;
-
-void FillMap(map_t& m) {
+void FillMap(useMetall::map_t& m) {
+    // imagine some real data here, instead of randomly generated placeholders
     std::default_random_engine r{};
     std::uniform_int_distribution d{ 0,0x5000 };
 
@@ -15,14 +13,12 @@ void FillMap(map_t& m) {
 }
 
 int main() {
-    map_t m{};
-    FillMap(m);
+    metall::manager manager(metall::create_only, useMetall::Path);
+    useMetall::map_t* m = manager.construct<useMetall::map_t>(useMetall::ObjectName)(manager.get_allocator());
 
+    FillMap(*m);
 
-    std::cout << "write writing data:" << std::endl;
-    for (const auto& kv : m)
-        std::cout << kv.first << "=" << kv.second << std::endl;
-    std::cout << "number of k/v pairs: " << m.size() << std::endl;
+    std::cout << "done generating data" << std::endl;
 
     return 0;
 }
