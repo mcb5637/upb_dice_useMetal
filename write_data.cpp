@@ -1,11 +1,12 @@
 #include <iostream>
 #include <random>
+#include <chrono>
 
 #include "common_defines.hpp"
 
 void FillMap(useMetall::map_t& m) {
     // imagine some real data here, instead of randomly generated placeholders
-    std::default_random_engine r{};
+    std::default_random_engine r{static_cast<long unsigned int>(std::chrono::system_clock::now().time_since_epoch().count())};
     std::uniform_int_distribution d{ 0,0x5000 };
 
     for (int i = 0; i < 0x100; ++i)
