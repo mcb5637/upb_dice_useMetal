@@ -1,6 +1,8 @@
 
 #include "boost/container/options.hpp"
 #include "boost/container/map.hpp"
+
+#define BOOST_BIND_GLOBAL_PLACEHOLDERS // disable a deprecated warning from boost that gets triggered by metall
 #include "metall/metall.hpp"
 
 namespace useMetall {
